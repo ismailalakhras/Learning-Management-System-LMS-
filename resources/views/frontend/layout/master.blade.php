@@ -30,6 +30,7 @@
 
     <!-- Scripts -->
     @vite(['resources/js/app.js', 'resources/js/frontend/index.js'])
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @stack('scripts')
 </body>

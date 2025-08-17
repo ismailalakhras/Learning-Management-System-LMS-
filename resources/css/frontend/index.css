@@ -5,3 +5,7 @@
     font-family: "inter";
 }
 
+.custom-toast {
+    top: 80px !important; /* نزّلها 80px لتحت */
+    right: 20px !important;
+}

@@ -1,6 +1,8 @@
 @extends('frontend.layout.master')
 
 @push('css')
+    @vite(['resources\css\frontend\home\course.css'])
+
     @vite(['resources/css/frontend/course/course.css'])
 @endpush
 
@@ -17,6 +19,9 @@
                         <li class="breadcrumb-item active" aria-current="page">{{ $course->title }}</li>
                     </ol>
                 </nav>
+
+
+
 
 
                 <!-- Course Title -->
@@ -88,8 +93,30 @@
                                 <div class="price">$ {{ $course->price }} <span
                                         style="margin: 1rem;font-size:20px;color:#16A34A;font-weight:600"> 50% Off</span>
                                 </div>
-                                <button class="btn-cart-primary add-to-cart" data-id="{{ $course->id }}">Add To
-                                    Cart</button>
+
+
+
+
+
+
+                                
+                                <div id="btn-toggle-container-{{ $course->id }}">
+                                    @if ($shoppingCart)
+                                        <button class="btn-cart-primary add-to-cart removeFromCartBtn"
+                                            data-id="{{ $course->id }}" style="background: rgb(194, 63, 11)">
+                                            Remove From Cart
+                                        </button>
+                                    @else
+                                        <button class="btn-cart-primary add-to-cart addToCartBtn"
+                                            data-id="{{ $course->id }}">
+                                            Add To Cart
+                                        </button>
+                                    @endif
+                                </div>
+
+
+
+
                                 <button class="btn-cart-secondary">By Now</button>
                             </div>
                         </div>
@@ -265,10 +292,63 @@
 
             @include('frontend.pages.home.partials.about-us')
 
+
+            {{-- more courses like this --}}
+
+            <section class="courses" style="padding:2rem; margin:5rem 3rem">
+                <div class="course-header">
+                    <h2>More Courses Like This</h2>
+
+                </div>
+
+                <div class="course-grid" id="coursesContainer">
+                    @foreach ($course->category->courses->take(4) as $course)
+                        <div class="card card-course-click" data-id="{{ $course->id }}">
+
+
+                            @if ($course->thumbnail)
+                                <img src="{{ asset($course->thumbnail) }}" alt="">
+                            @else
+                                <img src="{{ asset('images/bookshelf-svgrepo-com.svg') }}" alt="">
+                            @endif
+
+
+                            <div class="card-body">
+                                <div>
+                                    <h4>{{ $course->title }}</h4>
+                                    <p>by {{ $course->instructor->firstName }}</p>
+
+                                    <div class="star-rating">
+                                        <div class="star-rating-filled"
+                                            style="width: {{ $course->average_rating * 20 }}%">
+                                            ★★★★★
+                                        </div>
+                                        <div class="star-rating-empty">
+                                            ★★★★★
+                                        </div>
+                                    </div>
+                                    <span class="review-text">({{ $course->average_rating }} reviews)</span>
+
+                                    <p>
+                                        {{ $course->total_duration }} Total Minutes.
+                                        {{ $course->lessons->count() }} Lectures. Beginner
+                                    </p>
+                                </div>
+                                <div class="price">$ {{ $course->price }}</div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+
+
+            </section>
+
+
         </div>
     </div>
 @endsection
 
 @push('scripts')
-    @vite(['resources/js/frontend/course/course.js'])
+    @vite(['resources/js/frontend/course/course.js '])
 @endpush

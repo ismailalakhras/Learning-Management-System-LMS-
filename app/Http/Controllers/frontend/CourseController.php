@@ -135,6 +135,11 @@ class CourseController extends Controller
    
     public function show($id)
     {
+        $shoppingCart = \App\Models\ShoppingCart::where('user_id', auth()->id())
+        ->where('course_id', $id)
+        ->exists(); 
+
+
         $course = Course::with(['instructor', 'lessons'])
             ->findOrFail($id);
 
@@ -154,7 +159,8 @@ class CourseController extends Controller
             'reviews',
             'reviewsCount',
             'avg',
-            'dist'
+            'dist',
+            'shoppingCart'
         ));
     }
 

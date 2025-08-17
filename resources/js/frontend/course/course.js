@@ -22,7 +22,7 @@ $(function () {
         let reviewsUrl = btn.data('url');
 
         $.get(reviewsUrl + "?page=" + nextPage, function (data) {
-            $('#reviews .col-md-8').append(data.html); 
+            $('#reviews .col-md-8').append(data.html);
             if (!data.hasMore) {
                 btn.remove();
             } else {
@@ -31,3 +31,6 @@ $(function () {
         });
     });
 });
+
+
+
