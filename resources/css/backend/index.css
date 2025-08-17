@@ -1,0 +1,26 @@
+@import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
+@import "datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css";
+
+body {
+    visibility: hidden;
+}
+
+.main-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.356);
+    z-index: 2000;
+}
+
+.brand-highlight {
+    color: gold;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.main-header nav a {
+    margin-left: 1rem;
+    letter-spacing: 0.1rem;
+}

@@ -1,0 +1,38 @@
+.stats {
+    display: flex;
+    justify-content: space-between;
+    background: #f8fafc;
+    padding: 2rem;
+    width: 1356px;
+    text-align: center;
+    margin: auto;
+}
+
+.stat {
+    width: 12rem;
+    height: 4.3rem;
+}
+
+.stat h2 {
+    font-weight: 600;
+    font-size: 32px;
+    color: #0f172a;
+}
+
+.stat p {
+    font-weight: 400;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.line-between {
+    border-right: 4px solid #e2e8f0;
+    height: 3.43rem;
+}
+
+
+@media  (max-width: 1199.98px) {
+   .stats{
+    display: none !important;
+   }
+}

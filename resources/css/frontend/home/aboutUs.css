@@ -1,0 +1,142 @@
+.about-us {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+    gap: 1.5rem;
+    background: #fff;
+    font-family: "Inter", sans-serif;
+
+}
+.testimonials-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.testimonials-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.testimonial-card {
+    box-sizing: border-box;
+}
+
+.aboutUs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.aboutUs-header h2 {
+    font-weight: 600;
+    font-size: 2rem;
+    color: #1e293b;
+}
+
+.aboutUs-header .button {
+    display: flex;
+    gap: 10px;
+}
+
+.aboutUs-header .button button {
+    padding: 8px 16px;
+    border: none;
+    background: #94a3b8;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.aboutUs-header .button button:hover {
+    background: #87a0c2;
+}
+
+.testimonials-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin: 40px;
+}
+
+.testimonial-card {
+    flex: 0 0 calc(33.333% - 20px);
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
+    padding: 20px;
+    margin: 0 10px;
+}
+
+
+
+
+.testimonial-content {
+    position: relative;
+    z-index: 2;
+    flex-grow: 1;
+}
+
+.testimonial-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a2a6c;
+    margin-bottom: 5px;
+}
+
+.author-title {
+    font-size: 15px;
+    color: #666;
+    font-weight: 500;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 32px;
+    }
+
+    .testimonials-container {
+        grid-template-columns: 1fr;
+    }
+}
