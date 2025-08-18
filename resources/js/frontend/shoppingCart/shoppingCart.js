@@ -3,7 +3,6 @@
 
 
 $(function () {
-    console.log('xxx');
 
     $(document).on('click', '.removeFromCartBtn-shoppingCart', function (e) {
         e.preventDefault();

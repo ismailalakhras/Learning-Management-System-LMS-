@@ -127,6 +127,7 @@ $(function () {
 
 //! ------------------------{{ add and delete course from cart }}--------------------------------
 $(function () {
+
     $(document).on('click', '.addToCartBtn', function () {
         const button = $(this);
         const courseId = button.data('id');

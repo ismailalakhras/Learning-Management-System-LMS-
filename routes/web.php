@@ -47,6 +47,9 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/cart/{id}', [ShoppingCartController::class, 'store'])->name('cart.store');
     Route::delete('/cart/{id}', [ShoppingCartController::class, 'destroy'])->name('cart.destroy');
 
+
+   
+
     //! orders 
     // Route::get('/order', [OrderController::class, 'index'])->name('order.index');
     // Route::post('/order', [OrderController::class, 'store'])->name('order.store');
