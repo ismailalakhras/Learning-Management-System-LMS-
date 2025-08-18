@@ -1,5 +1,6 @@
 
 
+//! ----------------------{{ banner }}----------------------------
 
 $(function () {
     let currentIndex = 0;
@@ -38,11 +39,7 @@ $(function () {
     })
 })
 
-
-
-
-
-
+//! ----------------------{{ slider }}----------------------------
 
 let currentSlide = 0;
 const track = document.querySelector('.testimonials-track');
@@ -64,10 +61,6 @@ function updateSlide() {
 }
 
 
-
-
-
-
 //! ----------------------{{ fetch courses by category id }}----------------------------
 
 $(function () {
@@ -77,15 +70,12 @@ $(function () {
     })
 })
 
-
-
 $(function () {
     $(document).on('click', '.card-course-click', function () {
         let courseId = $(this).data('id');
         window.location.href = `/course/${courseId}`;
     })
 })
-
 
 
 //! ----------------------{{ fetch more courses  }}----------------------------
@@ -100,13 +90,10 @@ $(function () {
         $('.loadMoreCourses-secondBtn').show()
 
         $.get(coursesUrl + "?page=" + nextPage, function (data) {
-            // حوّل الـ HTML إلى عناصر
             let newItems = $(data.html);
 
-            // أضف العناصر الجديدة
             $('#coursesContainer').append(newItems);
 
-            // سكرول لأول عنصر جديد
             $('html, body').animate({
                 scrollTop: newItems.first().offset().top
             }, 600);
@@ -120,9 +107,6 @@ $(function () {
 
     });
 });
-
-
-
 
 
 //! ------------------------{{ add and delete course from cart }}--------------------------------
@@ -143,6 +127,8 @@ $(function () {
                         Remove From Cart
                     </button>
                 `);
+
+                $('.cart-count').text(res.cart_count);
 
                 showSuccessAlert(res);
             },
@@ -167,6 +153,7 @@ $(function () {
                         Add To Cart
                     </button>
                 `);
+                $('.cart-count').text(res.cart_count);
 
                 showSuccessAlert(res);
             },
@@ -176,8 +163,6 @@ $(function () {
         });
     });
 });
-
-
 
 
 //todo show Success Alert Function
@@ -230,3 +215,5 @@ function showErrorAlert(err) {
         }
     })
 }
+
+

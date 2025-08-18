@@ -29,6 +29,7 @@ class CourseController extends Controller
             $instructors = User::take(5)->get();
 
             if (request()->ajax()) {
+                
                 $view = view('frontend.pages.category.partials.courses_partial', compact('courses'))->render();
                 return response()->json([
                     'success' => true,
@@ -104,7 +105,7 @@ class CourseController extends Controller
         } elseif ($sort === 'price_desc') {
             $courses->orderBy('price', 'desc');
         } else {
-            $courses->latest(); // حسب التاريخ
+            $courses->latest();
         }
 
         $courses = $courses->paginate(6);
@@ -172,10 +173,6 @@ class CourseController extends Controller
         ));
     }
 
-
-    /**
-     * تحميل المراجعات (AJAX)
-     */
     public function loadReviews($id)
     {
         $course  = Course::findOrFail($id);

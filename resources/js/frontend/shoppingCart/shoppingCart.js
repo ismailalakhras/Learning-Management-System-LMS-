@@ -1,7 +1,6 @@
 
 //! ------------------------{{ delete course from cart - shopping cart page }}--------------------------------
 
-
 $(function () {
 
     $(document).on('click', '.removeFromCartBtn-shoppingCart', function (e) {
@@ -23,6 +22,8 @@ $(function () {
                     $('.cart-total').text(`$ ${res.total}`);
                 }
 
+                $('.cart-count').text(res.cart_count);
+
                 showSuccessAlert(res);
             },
             error: function (err) {
@@ -31,8 +32,6 @@ $(function () {
         });
     });
 });
-
-
 
 
 

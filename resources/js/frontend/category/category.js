@@ -1,8 +1,8 @@
-let currentFilter = {}; // نخزن الفلتر الحالي
+let currentFilter = {}; 
 
 //! ----------------------{{ Load Courses Function }}----------------------------
 function loadCourses(url, extraData = {}) {
-    currentFilter = extraData; // نخزن آخر فلتر
+    currentFilter = extraData; 
     $.ajax({
         url: url,
         type: 'GET',
@@ -10,7 +10,7 @@ function loadCourses(url, extraData = {}) {
         success: function (response) {
             if (response.success) {
                 $('#courses-container').html(response.page);
-                bindPaginationLinks(); // نعيد تفعيل الباجينيشن
+                bindPaginationLinks(); 
             }
         },
         error: function (err) {
@@ -24,7 +24,7 @@ function bindPaginationLinks() {
     $('#courses-container .pagination a').off('click').on('click', function (e) {
         e.preventDefault();
         let url = $(this).attr('href');
-        loadCourses(url, currentFilter); // نرسل الفلتر الحالي إذا موجود
+        loadCourses(url, currentFilter); 
     });
 }
 
@@ -76,10 +76,6 @@ $(function () {
 
 
 
-
-
-
-
 //! ----------------------{{ Filter By lessons }}----------------------------
 $(function () {
     $(document).on('click', '.filter-by-lessons', function () {
@@ -87,15 +83,12 @@ $(function () {
         let max = $(this).data('max');
         let categoryId = $('#category-id').val();
 
-
-        // إزالة تحديد كل الخيارات السابقة
         $('.filter-by-lessons input').prop('checked', false);
         $('.filter-by-lessons').css({
             'background-color': '',
             'color': ''
         });
 
-        // تفعيل الخيار الحالي
         $(this).find('input').prop('checked', true);
         $(this).css({
             'background-color': '#ffc1071c',
@@ -124,7 +117,6 @@ $(function () {
 });
 
 
-
 $(function () {
     $(document).on('click', '.card-course-click', function () {
         let courseId = $(this).data('id');
@@ -133,6 +125,4 @@ $(function () {
 })
 
 
-
-// أول تشغيل
 bindPaginationLinks();

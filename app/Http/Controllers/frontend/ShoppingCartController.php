@@ -20,7 +20,7 @@ class ShoppingCartController extends Controller
             return $item->course->price;
         });
 
-        return view('frontend.pages.shoppingCart.shoppingCart', compact('cartItems' , 'totalPrice'));
+        return view('frontend.pages.shoppingCart.shoppingCart', compact('cartItems', 'totalPrice'));
     }
 
     public function store($courseId)
@@ -75,7 +75,8 @@ class ShoppingCartController extends Controller
                     'cart_count' => $shoppingCartCount,
                     'price' => $price,
                     'total' => $total,
-                    'quantity' => 1
+                    'quantity' => 1,
+                    'cart_count' => ShoppingCart::where('user_id', Auth::id())->count(),
                 ]);
             }
         } catch (\Exception $e) {
@@ -103,6 +104,7 @@ class ShoppingCartController extends Controller
                     'success' => false,
                     'title' => 'Not Found!',
                     'message' => 'Course not found in cart.',
+                    'cart_count' => ShoppingCart::where('user_id', Auth::id())->count(),
 
                 ], 404);
             }

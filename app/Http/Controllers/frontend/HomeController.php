@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Review;
+use App\Models\ShoppingCart;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,21 +25,19 @@ class HomeController extends Controller
             ->paginate(4);
 
 
-
-        $instructors = User::with('courses') // نحمل الكورسات
+        $instructors = User::with('courses') 
             ->with(['courses' => function ($q) {
-                $q->withAvg('reviews', 'rating'); // لكل كورس نحسب متوسط تقييمه
+                $q->withAvg('reviews', 'rating');
             }])
-            ->has('courses') // فقط المدرسين الذين لديهم كورسات
+            ->has('courses') 
             ->get()
             ->map(function ($user) {
-                // نحسب متوسط تقييم كل كورسات المدرس
                 $user->average_rating = $user->courses->avg('reviews_avg_rating');
                 return $user;
             })
-            ->sortByDesc('average_rating') // الترتيب من الأعلى للأقل
+            ->sortByDesc('average_rating') 
             ->take(5);
-        return view('frontend.pages.home.index', compact('categories', 'courses', 'instructors'));
+        return view('frontend.pages.home.index', compact('categories', 'courses', 'instructors' ));
     }
 
 
@@ -73,18 +73,17 @@ class HomeController extends Controller
 
 
 
-        $instructors = User::with('courses') // نحمل الكورسات
+        $instructors = User::with('courses') 
             ->with(['courses' => function ($q) {
-                $q->withAvg('reviews', 'rating'); // لكل كورس نحسب متوسط تقييمه
+                $q->withAvg('reviews', 'rating'); 
             }])
-            ->has('courses') // فقط المدرسين الذين لديهم كورسات
+            ->has('courses')
             ->get()
             ->map(function ($user) {
-                // نحسب متوسط تقييم كل كورسات المدرس
                 $user->average_rating = $user->courses->avg('reviews_avg_rating');
                 return $user;
             })
-            ->sortByDesc('average_rating') // الترتيب من الأعلى للأقل
+            ->sortByDesc('average_rating') 
             ->take(5);
 
         return view('frontend.pages.home.index', compact('categories', 'courses', 'instructors'));
