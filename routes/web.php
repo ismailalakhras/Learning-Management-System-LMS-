@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\frontend\CourseController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\ShoppingCartController;
@@ -48,15 +49,18 @@ Route::middleware('auth:web')->group(function () {
     Route::delete('/cart/{id}', [ShoppingCartController::class, 'destroy'])->name('cart.destroy');
 
 
-   
+    //! checkout
+    Route::get('/checkout', [CheckoutController::class, 'create'])->name('checkout.create');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])->name('checkout.success');
 
-    //! orders 
-    // Route::get('/order', [OrderController::class, 'index'])->name('order.index');
-    // Route::post('/order', [OrderController::class, 'store'])->name('order.store');
-
-    //! orders 
-    // Route::put('/coupon', [FrontendCouponController::class, 'update'])->name('coupon');
 });
+
+
+
+
+
+
 
 
 

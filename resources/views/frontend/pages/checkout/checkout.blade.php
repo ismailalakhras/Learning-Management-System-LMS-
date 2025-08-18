@@ -1,122 +1,81 @@
 @extends('frontend.layout.master')
 
 @push('css')
-    @vite(['resources\css\frontend\home\course.css'])
+    @vite(['resources\css\frontend\checkout\checkout.css'])
 @endpush
 
 @section('content')
-    {{-- @dd($cartItems[1]->course->average_rating) --}}
+    <div class="checkout-container">
 
+        <form action="{{ route('checkout.store') }}" method="POST">
+            @csrf
 
-    <section style="display: flex;justify-content : center;">
+            <!-- Left: Form -->
+            <h4>Checkout Page</h4>
+            <div class="checkout-form">
+                <div style="display:grid; grid-template-columns: 50% 50%; gap:1rem;">
+                    <input type="hidden" name="total_price" value="{{ $totalPrice }}">
 
-        <div class="row mb-10" style="width: 1200px;">
-            <!-- Cart Items -->
-            <div class="col-lg-8">
-                <h3 class="mb-10 mt-10" style="font-size: 32px;font-weight:600">Shopping Cart</h3>
+                    <div>
 
-
-                @foreach ($cartItems as $item)
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-3">
-
-                                @if ($item->course->thumbnail)
-                                    <img src="{{ asset($item->course->thumbnail) }}"
-                                        class="rounded-circle me-2 instructor-avatar" alt="Instructor">
-                                @else
-                                    <img src="{{ asset('images/bookshelf-svgrepo-com.svg') }}"
-                                        class="rounded-circle me-2 instructor-avatar" alt="Instructor">
-                                @endif
-
-
-
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card-body d-flex justify-content-between align-items-start"
-                                    style="position: relative">
-                                    <div>
-                                        <h5 class="card-title" style="font-size: 18px;font-weight:600">
-                                            {{ $item->course->title }}</h5>
-                                        <p class="mb-1 text-muted">{{ $item->course->instructor->firstName }}
-                                            {{ $item->course->instructor->lastName }}</p>
-                                        <p class="small text-muted"> {{ $item->course->average_rating }} <span
-                                                style="color: gold">★</span> (250 ratings) ·
-                                            {{ number_format($item->course->total_duration / 60, 1) }}
-                                            h · {{ $item->course->lessons->count() }} Lectures · All levels
-                                            {{-- </p>@dd($item->course->lessons) --}}
-                                        <div style="margin-bottom: auto">
-
-                                            <a href="#" class="text-decoration-none me-3"
-                                                style=" font-size : 14px">Save for later</a>
-
-
-
-
-
-
-
-
-
-
-                                            <a href="#" data-id="{{ $item->course->id }}"
-                                                class="text-danger text-decoration-none removeFromCartBtn-shoppingCart"
-                                                style="color:#DC2626 ; font-size : 14px">Remove</a>
-
-
-
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                    <h5 class="text-end text-dark"
-                                        style="position: absolute; top:15px;right:15px;font-size:24px;font-weight:600">
-                                        $ {{ $item->price }}</h5>
-                                </div>
-                            </div>
-                        </div>
+                        <label style="font-size: 18px ; font-weight :600 ; margin-bottom : 10px">Country</label>
+                        <input name="country" type="text" placeholder="Enter Country">
                     </div>
-                @endforeach
 
-
-
-            </div>
-
-            <!-- Order Summary -->
-            <div class="col-lg-4" style="margin-top: 2.5rem">
-                <h5 class="card-title mb-1" style="font-size:20px;font-weight:600">Order Details</h5>
-                <div class="card shadow-sm">
-                    <div class="card-body" style="background: #E2E8F0">
-                        <ul class="list-group list-group-flush ">
-                            <li class="list-group-item bg-transparent d-flex justify-content-between">
-                                <span>Price</span> <strong class="cart-total">$ {{ $totalPrice }}</strong>
-                            </li>
-                            <li class="list-group-item bg-transparent d-flex justify-content-between">
-                                <span>Discount</span> <strong class="text-success">0.00</strong>
-                            </li>
-                            <li class="list-group-item bg-transparent d-flex justify-content-between">
-                                <span>Tax</span> <strong>0.00</strong>
-                            </li>
-                            <li class="list-group-item bg-transparent d-flex justify-content-between align-items-center"
-                                style="font-size: 20px;font-weight:600">
-                                <span>Total</span> <strong class="fs-5 cart-total" >$ {{ $totalPrice }}</strong>
-                            </li>
-
-
-
-                        </ul>
+                    <div>
+                        <label style="font-size: 18px ; font-weight :600;margin-bottom : 10px">State/Union Territory</label>
+                        <input name="state" type="text" placeholder="Enter State">
                     </div>
                 </div>
-                <button class="btn btn-dark w-100 mt-2" style="height: 48px">Proceed to Checkout</button>
+
+                <h4>Payment Method</h4>
+
+                <div style="background-color: #E2E8F0;padding:10px  ">
+
+                    <div class="payment-method active">
+                        <span>Credit/Debit Card</span>
+                        <img src="{{ asset('') }}" alt="visa" height="24">
+                    </div>
+                    <input type="text" placeholder="Name of card">
+                    <input type="text" placeholder="Card Number">
+                    <div style="display:flex;gap:10px;">
+                        <input type="text" placeholder="Expiry Date">
+                        <input type="text" placeholder="CVC/CVV">
+                    </div>
+                    <div class="payment-method">
+                        <span>PayPal</span>
+                        <img src="paypal.png" alt="paypal" height="24">
+                    </div>
+
+                </div>
+
             </div>
 
-        </div>
-    </section>
+            <!-- Right: Order Summary -->
+            <div class="order-summary">
+                <h4>Order Details</h4>
+                <div class="order-item">
+                    <img src="{{ asset('images/figure-svgrepo-com.svg') }}" alt="Course">
+                    <div class="order-details">
+                        <p><strong>Introduction to UX Design</strong></p>
+                        <p>165 Lectures · 22h</p>
+                        <p>$45.00</p>
+                    </div>
+                </div>
+
+                <div class="price-info">
+                    <div><span>Price</span><span>$ {{ $totalPrice }}</span></div>
+                    <div><span>Discount</span><span>- $10.00</span></div>
+                    <div><span>Tax</span><span>$20.00</span></div>
+                    <div class="total"><span>Total</span><span>$ {{ $totalPrice }}</span></div>
+                </div>
+
+                <button type="submit" class="btn-checkout">Proceed to Checkout</button>
+            </div>
+        </form>
+    </div>
 @endsection
 
+
 @push('scripts')
-    @vite(['resources\js\frontend\shoppingCart\shoppingCart.js'])
 @endpush

@@ -110,7 +110,7 @@
                         </ul>
                     </div>
                 </div>
-                <button class="btn btn-dark w-100 mt-2" style="height: 48px">Proceed to Checkout</button>
+                <button  onclick="window.location.href='{{ route('checkout.create') }}'" class="btn btn-dark w-100 mt-2" style="height: 48px">Proceed to Checkout</button>
             </div>
 
         </div>
