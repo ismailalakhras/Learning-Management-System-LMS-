@@ -179,9 +179,6 @@ $(function () {
 
 
 
-
-
-
 //todo show Success Alert Function
 function showSuccessAlert(res) {
     Swal.fire({

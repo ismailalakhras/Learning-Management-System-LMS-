@@ -12,11 +12,15 @@ class ShoppingCartController extends Controller
 {
     public function index()
     {
-        $cartItems = ShoppingCart::with('courses')
+        $cartItems = ShoppingCart::with('course')
             ->where('user_id', Auth::id())
             ->get();
 
-        return view('frontend.pages.shoppingCart.shoppingCart', compact('cartItems'));
+        $totalPrice = $cartItems->sum(function ($item) {
+            return $item->course->price;
+        });
+
+        return view('frontend.pages.shoppingCart.shoppingCart', compact('cartItems' , 'totalPrice'));
     }
 
     public function store($courseId)

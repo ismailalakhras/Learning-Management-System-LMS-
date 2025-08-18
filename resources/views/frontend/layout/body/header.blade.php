@@ -21,7 +21,7 @@
     @if (auth()->check())
         <div class="header-right">
             <a href="#" class="cart"><img src="{{ asset('images/icons/heart.svg') }}" alt=""></a>
-            <a href="#" class="cart"><img src="{{ asset('images/icons/cart.svg') }}" alt=""></a>
+            <a href="{{ route('cart.index') }}" class="cart"><img src="{{ asset('images/icons/cart.svg') }}" alt=""></a>
             <a href="#" class="cart"><img src="{{ asset('images/icons/notifaction.svg') }}" alt=""></a>
             <div id="profileIcon">
                 {{ substr(auth()->user()->firstName, 0, 1) }}
@@ -45,7 +45,7 @@
         </div>
     @else
         <div class="header-right">
-            <a href="#" class="cart"><img src="{{ asset('images/icons/cart.svg') }}" alt=""></a>
+            <a href="{{ route('cart.index') }}" class="cart"><img src="{{ asset('images/icons/cart.svg') }}" alt=""></a>
             <button class="btn-outline" style="color: #334155" onclick="window.location.href='{{ route('login') }}'">Log
                 In</button>
             <button class="btn-dark" onclick="window.location.href='{{ route('register') }}'">Sign Up</button>
