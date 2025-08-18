@@ -5,7 +5,7 @@
                 <img src="{{ asset($course->thumbnail) }}" style="width:100%; height:200px; object-fit:cover; alt="">
             @else
                 <img src="{{ asset('images/bookshelf-svgrepo-com.svg') }}"
-                    style="width:100%; height:200px; object-fit:cover; alt="">
+                    style="width:100%; height:200px; object-fit:cover;" alt="">
             @endif
 
             <div class="card-body">

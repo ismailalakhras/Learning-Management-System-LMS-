@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-   
+
     public function courseByCategoryId($id)
     {
         try {
@@ -17,6 +17,14 @@ class CourseController extends Controller
                 ->where('category_id', $id)
                 ->orderBy('price', 'asc')
                 ->paginate(6);
+
+
+            $featuresCourses = Course::where('category_id', $id)
+                ->withAvg('reviews', 'rating')
+                ->orderByDesc('reviews_avg_rating')
+                ->take(4)
+                ->get();
+
 
             $instructors = User::take(5)->get();
 
@@ -28,7 +36,7 @@ class CourseController extends Controller
                 ]);
             }
 
-            return view('frontend.pages.category.category', compact('courses', 'instructors', 'id'));
+            return view('frontend.pages.category.category', compact('courses', 'instructors', 'id', 'featuresCourses'));
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
@@ -39,7 +47,7 @@ class CourseController extends Controller
         }
     }
 
-   
+
     public function filterByRating(Request $request)
     {
         $rating      = $request->input('rating', 0);
@@ -61,7 +69,7 @@ class CourseController extends Controller
         ]);
     }
 
-   
+
     public function filterByPrice(Request $request)
     {
         $min         = $request->input('min', 0);
@@ -82,7 +90,7 @@ class CourseController extends Controller
         ]);
     }
 
-   
+
     public function sortCourses(Request $request)
     {
         $sort        = $request->input('sort', 'relevance');
@@ -109,7 +117,7 @@ class CourseController extends Controller
         ]);
     }
 
- 
+
     public function filterByLessons(Request $request)
     {
         $min         = $request->input('min_lessons', 0);
@@ -132,12 +140,12 @@ class CourseController extends Controller
         ]);
     }
 
-   
+
     public function show($id)
     {
         $shoppingCart = \App\Models\ShoppingCart::where('user_id', auth()->id())
-        ->where('course_id', $id)
-        ->exists(); 
+            ->where('course_id', $id)
+            ->exists();
 
 
         $course = Course::with(['instructor', 'lessons'])
@@ -152,7 +160,7 @@ class CourseController extends Controller
         $dist = $course->reviews()
             ->selectRaw('rating, COUNT(*) as count')
             ->groupBy('rating')
-            ->pluck('count', 'rating'); 
+            ->pluck('count', 'rating');
 
         return view('frontend.pages.course.course', compact(
             'course',

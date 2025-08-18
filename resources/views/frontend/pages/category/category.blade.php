@@ -3,25 +3,14 @@
 
 @push('css')
     @vite(['resources/css/frontend/category/category.css'])
+
+    @vite(['resources\css\frontend\home\course.css'])
+
+    @vite(['resources/css/frontend/course/course.css'])
 @endpush
 
 
 @section('content')
-    {{-- @dd($courses[0]->title) --}}
-    {{-- @dd($courses[0]->instructor->firstName) --}}
-    {{-- @dd($courses[0]->average_rating) --}}
-    {{-- @dd(intval($courses[0]->total_duration / 60)) --}}
-    {{-- @dd($courses[0]->lessons->count()) --}}
-    {{-- @dd($courses[0]->price) --}}
-
-
-
-
-    {{-- @dd($instructors[1]->firstName) --}}
-    {{-- @dd($instructors[1]->avatar) --}}
-    {{-- @dd(number_format($instructors[1]->average_rating, 1)) --}}
-
-
     <input type="hidden" id="category-id" value="{{ $courses[0]->category->id }}">
 
     <div class="container">
@@ -120,14 +109,17 @@
             @foreach ($instructors as $instructor)
                 <div class="card" style="width: 100%;">
                     <div style="padding: 1rem">
-                        <img src="{{ $instructor->avatar }}" alt="Course Image"
-                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                        @if ($instructor->avatar)
+                            <img src="{{ asset($instructor->avatar) }}" alt="">
+                        @else
+                            <img src="{{ asset('images/figure-svgrepo-com.svg') }}" alt="">
+                        @endif
                     </div>
                     <div class="card-body">
                         <h4>{{ $instructor->firstName }}</h4>
                         <p>web development</p>
                         <div class="rating" style="display: flex">
-                            ★ <span style="color:#0a0a0a;">4.9</span><span style="margin-left: auto ; color:#0a0a0a">2400
+                            ★ <span style="color:#0a0a0a;">3.5</span><span style="margin-left: auto ; color:#0a0a0a">2400
                                 students</span>
                         </div>
                     </div>
@@ -139,30 +131,53 @@
 
     <!-- features course -->
 
-    <div id="instructor-container" style="margin-top: 1rem;">
-        <div class="main-header">
-            <h1 style="font-size: 24px">Featured Courses</h1>
+    <section class="courses" style="padding:2rem; margin:5rem 3rem">
+        <div class="course-header">
+            <h2>Features Course</h2>
+
         </div>
 
-        <div class="grid instructor-container-grid " style="">
-            @foreach ($instructors as $instructor)
-                <div class="card" style="width: 100%;">
-                    <div style="padding: 1rem">
-                        <img src="{{ $instructor->avatar }}" alt="Course Image"
-                            style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
-                    </div>
+        <div class="course-grid" id="coursesContainer">
+            @foreach ($featuresCourses as $course)
+                <div class="card card-course-click" data-id="{{ $course->id }}">
+
+
+                    @if ($course->thumbnail)
+                        <img src="{{ asset($course->thumbnail) }}" alt="">
+                    @else
+                        <img src="{{ asset('images/bookshelf-svgrepo-com.svg') }}" alt="">
+                    @endif
+
+
                     <div class="card-body">
-                        <h4>{{ $instructor->firstName }}</h4>
-                        <p>web development</p>
-                        <div class="rating" style="display: flex">
-                            ★ <span style="color:#0a0a0a;">4.9</span><span style="margin-left: auto ; color:#0a0a0a">2400
-                                students</span>
+                        <div>
+                            <h4>{{ $course->title }}</h4>
+                            <p>by {{ $course->instructor->firstName }}</p>
+
+                            <div class="star-rating">
+                                <div class="star-rating-filled" style="width: {{ $course->average_rating * 20 }}%">
+                                    ★★★★★
+                                </div>
+                                <div class="star-rating-empty">
+                                    ★★★★★
+                                </div>
+                            </div>
+                            <span class="review-text">({{ $course->average_rating }} reviews)</span>
+
+                            <p>
+                                {{ $course->total_duration }} Total Minutes.
+                                {{ $course->lessons->count() }} Lectures. Beginner
+                            </p>
                         </div>
+                        <div class="price">$ {{ $course->price }}</div>
                     </div>
                 </div>
             @endforeach
+
         </div>
-    </div>
+
+
+    </section>
 @endsection
 
 
