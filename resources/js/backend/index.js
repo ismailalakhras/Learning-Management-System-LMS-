@@ -35,5 +35,42 @@ function setActiveNavLink($activeLink) {
 }
 
 
+let currentFilter = {};
+
+//! ----------------------{{ Load Courses Function }}----------------------------
+function loadCourses(url, extraData = {}) {
+    currentFilter = extraData;
+    $.ajax({
+        url: url,
+        type: 'GET',
+        data: extraData,
+        success: function (response) {
+            if (response.success) {
+                $('#courses-container').html(response.page);
+                bindPaginationLinks();
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
+
+//! ----------------------{{ Pagination Courses }}----------------------------
+function bindPaginationLinks() {
+    $('#courses-container .pagination a').off('click').on('click', function (e) {
+        e.preventDefault();
+        let url = $(this).attr('href');
+        loadCourses(url, currentFilter);
+    });
+}
+
+bindPaginationLinks();
 
 
+//! ----------------------{{ side menu course toggle }}----------------------------
+$(function () {
+    $('#toggle-categories').on('click', function () {
+        $('.categories-dropdown').slideToggle(200);
+    });
+});

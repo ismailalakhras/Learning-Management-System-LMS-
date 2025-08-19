@@ -99,7 +99,7 @@
 
 
 
-                                
+
                                 <div id="btn-toggle-container-{{ $course->id }}">
                                     @if ($shoppingCart)
                                         <button class="btn-cart-primary add-to-cart removeFromCartBtn"
@@ -272,14 +272,8 @@
                                     @include('frontend.pages.course.partials.reviews')
                                 </div>
 
-                                <div class="reviews-cta">
-                                    @if ($reviews->hasMorePages())
-                                        <button id="loadMore" data-next-page="{{ $reviews->currentPage() + 1 }}"
-                                            data-url="{{ url('courses/' . $course->id . '/reviews') }}"
-                                            class="btn btn-outline-primary mt-3 btn-view-more">
-                                            View more Reviews
-                                        </button>
-                                    @endif
+                                <div class="d-flex justify-content-center mt-4" id="pagination-links">
+                                    {{ $courses->links('pagination::bootstrap-5') }}
                                 </div>
 
                             </div>

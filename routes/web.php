@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CourseController as BackendCourseController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\frontend\CourseController;
@@ -53,7 +55,6 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'create'])->name('checkout.create');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])->name('checkout.success');
-
 });
 
 
@@ -85,14 +86,14 @@ Route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('admin/dashboard', function () {
         return view('backend.pages.dashboard.dashboard');
     })->name('admin.dashboard');
-
-    Route::get('admin/user', [UserController::class, 'index'])->name('admin.user.index');
 });
 
 // --------------------
 // Authenticated User Routes
 // --------------------
 Route::middleware('auth')->group(function () {
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -102,3 +103,26 @@ Route::middleware('auth')->group(function () {
 // Authentication Routes (Laravel Breeze / Jetstream / Fortify)
 // --------------------
 require __DIR__ . '/auth.php';
+
+
+
+
+
+
+
+
+//! backend Routes
+
+Route::middleware('auth:admin', 'role:admin')->group(function () {
+
+    Route::get('admin/user', [UserController::class, 'index'])->name('admin.user.index');
+
+    //!category
+    Route::get('admin/category/{id}/courses', [BackendCourseController::class, 'index'])->name('admin.courses.index');
+    // Route::get('admin/course-create', [CategoryController::class, 'create'])->name('admin.course.create');
+    // Route::post('admin/course-store', [CategoryController::class, 'store'])->name('admin.course.store');
+
+    // Route::get('admin/course-edit/{course}', [CategoryController::class, 'edit'])->name('admin.course.edit');
+    // Route::put('admin/course-update/{course}', [CategoryController::class, 'update'])->name('admin.course.update');
+    // Route::delete('admin/course-delete/{course}', [CategoryController::class, 'destroy'])->name('admin.course.delete');
+});

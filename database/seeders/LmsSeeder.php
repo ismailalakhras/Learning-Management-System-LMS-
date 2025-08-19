@@ -59,11 +59,12 @@ class LmsSeeder extends Seeder
                     ]);
                 }
 
-                $count = rand(1, 15);
+                $count = rand(1, 15); // عدد الطلاب العشوائي
 
-                // نجيب أرقام الطلاب بشكل عشوائي بدون تكرار
+                // نجيب طلاب عشوائيين بدون تكرار
                 $students = collect(range(1, 15))->random($count);
-                $students = collect(range(1, 15))->shuffle()->take(5);
+
+                // ندخل البيانات
                 foreach ($students as $studentId) {
                     DB::table('enrollments')->insert([
                         'student_id' => $studentId,

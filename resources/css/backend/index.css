@@ -1,26 +1,548 @@
 @import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 @import "datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css";
 
-body {
-    visibility: hidden;
+:root {
+    --greyborder: rgba(226, 232, 240, 1);
+    --greybackground: rgba(248, 250, 252, 1);
+    --primary-500: rgba(59, 130, 246, 1);
+    --grey-900: rgba(15, 23, 42, 1);
+    --white: rgba(255, 255, 255, 1);
+    --primary-600: rgba(37, 99, 235, 1);
+    --grey-100: rgba(241, 245, 249, 1);
+    --grey-700: rgba(51, 65, 85, 1);
+    --greytext-dark: rgba(2, 6, 23, 1);
+    --small-text-font-family: "Inter", Helvetica;
+    --small-text-font-weight: 400;
+    --small-text-font-size: 14px;
+    --small-text-letter-spacing: 0px;
+    --small-text-line-height: 150%;
+    --small-text-font-style: normal;
+    --heading-3-font-family: "Inter", Helvetica;
+    --heading-3-font-weight: 400;
+    --heading-3-font-size: 24px;
+    --heading-3-letter-spacing: 0px;
+    --heading-3-line-height: 140%;
+    --heading-3-font-style: normal;
+    --button-text-font-family: "Inter", Helvetica;
+    --button-text-font-weight: 500;
+    --button-text-font-size: 14px;
+    --button-text-letter-spacing: 0px;
+    --button-text-line-height: 160%;
+    --button-text-font-style: normal;
+    --label-font-family: "Inter", Helvetica;
+    --label-font-weight: 400;
+    --label-font-size: 12px;
+    --label-letter-spacing: 0px;
+    --label-line-height: normal;
+    --label-font-style: normal;
+    --heading-5-subheading-font-family: "Inter", Helvetica;
+    --heading-5-subheading-font-weight: 400;
+    --heading-5-subheading-font-size: 18px;
+    --heading-5-subheading-letter-spacing: 0px;
+    --heading-5-subheading-line-height: 160%;
+    --heading-5-subheading-font-style: normal;
+    --shadow: 0px 0px 8px 0px rgba(59, 130, 246, 0.12);
 }
 
-.main-header {
-    position: sticky;
+/* ---------------------------course page style---------------------------- */
+.seller-courses {
+    width: 1356px;
+    background-color: var(--greybackground);
+}
+
+.seller-courses .side-menu {
+    position: absolute;
+    width: 240px;
+    min-height: 100vh;
     top: 0;
     left: 0;
-    right: 0;
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.356);
-    z-index: 2000;
+    background-color: var(--grey-900);
+    box-shadow: 2px 0px 4px #00000040;
 }
 
-.brand-highlight {
-    color: gold;
-    font-size: 2rem;
+.seller-courses .frame {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    align-items: flex-start;
+    gap: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.seller-courses .logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.seller-courses .logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.seller-courses .div {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.seller-courses .logo-2 {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: url(https://c.animaapp.com/meilzjuc7hm2I8/img/logo-3.png) 50%
+        50% / cover;
+}
+
+.seller-courses .text-wrapper {
+    color: var(--greyborder);
+    position: relative;
+    width: fit-content;
+    font-family: "Inter", Helvetica;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.seller-courses .img {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.seller-courses .frame-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.seller-courses .frame-2 .menu-2 {
+    position: relative;
+}
+
+.seller-courses .menu {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.seller-courses .img-wrapper {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 18px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.seller-courses .lable {
+    color: var(--greybackground);
+    font-size: var(--small-text-font-size);
+    line-height: var(--small-text-line-height);
+    position: relative;
+    width: fit-content;
+    font-family: var(--small-text-font-family);
+    font-weight: var(--small-text-font-weight);
+    letter-spacing: var(--small-text-letter-spacing);
+    white-space: nowrap;
+    font-style: var(--small-text-font-style);
+}
+
+.seller-courses .menu-2 {
+    display: flex;
+    align-self: stretch;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.seller-courses .lable-2 {
+    color: var(--primary-500);
+    font-size: var(--small-text-font-size);
+    line-height: var(--small-text-line-height);
+    position: relative;
+    width: fit-content;
+    font-family: var(--small-text-font-family);
+    font-weight: var(--small-text-font-weight);
+    letter-spacing: var(--small-text-letter-spacing);
+    white-space: nowrap;
+    font-style: var(--small-text-font-style);
+}
+
+.seller-courses .rectangle {
+    position: absolute;
+    width: 2px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    background-color: var(--primary-500);
+}
+
+.seller-courses .div-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.seller-courses .logo-3 {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    background: url(https://c.animaapp.com/meilzjuc7hm2I8/img/logo-4.png) 50%
+        50% / cover;
+}
+
+.seller-courses .byway {
+    color: var(--greybackground);
+    position: relative;
+    width: fit-content;
+    font-family: "Inter", Helvetica;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.seller-courses .frame-3 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    position: absolute;
+    top: 16px;
+    left: 256px;
+}
+
+.seller-courses .frame-4 {
+    display: inline-flex;
+    align-items: center;
+    gap: 828px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.seller-courses .lable-3 {
+    color: var(--grey-900);
+    font-size: var(--heading-3-font-size);
+    line-height: var(--heading-3-line-height);
+    position: relative;
+    width: fit-content;
+    font-family: var(--heading-3-font-family);
+    font-weight: var(--heading-3-font-weight);
+    letter-spacing: var(--heading-3-letter-spacing);
+    white-space: nowrap;
+    font-style: var(--heading-3-font-style);
+}
+
+.seller-courses .frame-5 {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.seller-courses .button {
+    all: unset;
+    box-sizing: border-box;
+    display: inline-flex;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 24px;
+    position: relative;
+    flex: 0 0 auto;
+    background-color: var(--primary-600);
+    border-radius: 8px;
+}
+
+.seller-courses .label {
+    position: relative;
+    width: fit-content;
+    font-family: var(--button-text-font-family);
+    font-weight: var(--button-text-font-weight);
+    color: var(--white);
+    font-size: var(--button-text-font-size);
+    letter-spacing: var(--button-text-letter-spacing);
+    line-height: var(--button-text-line-height);
+    white-space: nowrap;
+    font-style: var(--button-text-font-style);
+}
+
+
+.seller-courses .frame-6 {
+    display: grid;
+     grid-template-columns: repeat(3 ,auto);
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+}
+
+.seller-courses .backend-course-card {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 16px;
+    position: relative;
+    flex: 0 0 auto;
+    background-color: var(--white);
+    border-radius: 8px;
+    border: 1px solid;
+    border-color: #e2e8f0;
+    box-shadow: var(--shadow);
+    width: 356px;
+    height: 229px;
+}
+
+.seller-courses .chips {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+    position: relative;
+    flex: 0 0 auto;
+    background-color: var(--grey-100);
+    border-radius: 8px;
+    border: 1px solid;
+    border-color: #e2e8f0;
+}
+
+.seller-courses .chip-text {
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: var(--label-font-family);
+    font-weight: var(--label-font-weight);
+    color: var(--grey-900);
+    font-size: var(--label-font-size);
+    letter-spacing: var(--label-letter-spacing);
+    line-height: var(--label-line-height);
+    font-style: var(--label-font-style);
+}
+
+.seller-courses .frame-7 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.seller-courses .text-wrapper-2 {
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: var(--heading-5-subheading-font-family);
+    font-weight: var(--heading-5-subheading-font-weight);
+    color: var(--grey-900);
+    font-size: var(--heading-5-subheading-font-size);
+    letter-spacing: var(--heading-5-subheading-letter-spacing);
+    line-height: var(--heading-5-subheading-line-height);
+    white-space: nowrap;
+    font-style: var(--heading-5-subheading-font-style);
+}
+
+.seller-courses .line {
+    position: relative;
+    width: 318px;
+    height: 1px;
+    object-fit: cover;
+}
+
+.seller-courses .frame-8 {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 43px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.seller-courses .frame-9 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.seller-courses .frame-10 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.seller-courses .text-wrapper-3 {
+    position: relative;
+    width: fit-content;
+    font-family: var(--small-text-font-family);
+    font-weight: var(--small-text-font-weight);
+    color: var(--grey-700);
+    font-size: var(--small-text-font-size);
+    letter-spacing: var(--small-text-letter-spacing);
+    line-height: var(--small-text-line-height);
+    white-space: nowrap;
+    font-style: var(--small-text-font-style);
+}
+
+.seller-courses .text-wrapper-4 {
+    text-align: center;
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: var(--heading-5-subheading-font-family);
+    font-weight: var(--heading-5-subheading-font-weight);
+    color: var(--grey-900);
+    font-size: var(--heading-5-subheading-font-size);
+    letter-spacing: var(--heading-5-subheading-letter-spacing);
+    line-height: var(--heading-5-subheading-line-height);
+    white-space: nowrap;
+    font-style: var(--heading-5-subheading-font-style);
+}
+
+.seller-courses .text-wrapper-5 {
+    position: relative;
+    width: fit-content;
+    font-family: var(--small-text-font-family);
+    font-weight: var(--small-text-font-weight);
+    color: var(--grey-700);
+    font-size: var(--small-text-font-size);
+    text-align: center;
+    letter-spacing: var(--small-text-letter-spacing);
+    line-height: var(--small-text-line-height);
+    white-space: nowrap;
+    font-style: var(--small-text-font-style);
+}
+
+.seller-courses .text-wrapper-6 {
+    position: relative;
+    width: 100px;
+    font-family: var(--small-text-font-family);
+    font-weight: var(--small-text-font-weight);
+    color: var(--grey-700);
+    font-size: var(--small-text-font-size);
+    letter-spacing: var(--small-text-letter-spacing);
+    line-height: var(--small-text-line-height);
+    font-style: var(--small-text-font-style);
+}
+
+.categories-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 1px;
+    background: #ffffff;
+    padding: 8px 0;
+    color: #333;
+    width: 240px;
+    z-index: 1000;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: "Inter", sans-serif;
+}
+
+.categories-dropdown ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.categories-dropdown li {
+    padding: 10px 15px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.categories-dropdown li a {
+    text-decoration: none;
+}
+
+.categories-dropdown li:hover {
+    background: #f3f4f6;
+    color: #2563eb;
+}
+
+/* pagination */
+
+
+.d-none.flex-sm-fill.d-sm-flex.align-items-sm-center.justify-content-sm-between  div{
+    position: fixed;
+    bottom: -0; 
+    left:50%;
+     transform: translateX(-50%);
+    font-size: 14px;
+    color: #555;
+    z-index: 999;
+}
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    bottom: 20px;
+     left:50%;
+     transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.pagination .page-link {
+    color: #444;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 6px 12px;
+    transition: all 0.2s ease-in-out;
+}
+
+.pagination .page-link:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.pagination .active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
     font-weight: bold;
 }
 
-.main-header nav a {
-    margin-left: 1rem;
-    letter-spacing: 0.1rem;
+.pagination .disabled .page-link {
+    color: #aaa;
+    background-color: #f9f9f9;
 }

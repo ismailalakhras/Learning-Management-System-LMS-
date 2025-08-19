@@ -1,3 +1,7 @@
+@php
+    $categories = \App\Models\Category::latest('created_at')->get();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +15,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 
-    
+
 
     <!-- css -->
     @vite(['resources/css/app.css', 'resources/css/backend/index.css'])
@@ -22,12 +26,18 @@
 
 <body>
 
-    @include('backend.layout.body.header')
 
-    <div class="d-flex">
+
+
+
         @include('backend.layout.body.sidebar')
         @yield('content')
-    </div>
+
+
+
+
+
+
 
 
     <!-- Scripts -->
