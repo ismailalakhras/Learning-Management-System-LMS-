@@ -119,6 +119,8 @@ Route::middleware('auth:admin', 'role:admin')->group(function () {
 
     //!category
     Route::get('admin/category/{id}/courses', [BackendCourseController::class, 'index'])->name('admin.courses.index');
+    Route::get('admin/course/{id}', [BackendCourseController::class, 'show'])->name('admin.course.show');
+    Route::get('admin/course/{id}/reviews', [BackendCourseController::class, 'reviewsOfCourse'])->name('admin.course.reviews');
     // Route::get('admin/course-create', [CategoryController::class, 'create'])->name('admin.course.create');
     // Route::post('admin/course-store', [CategoryController::class, 'store'])->name('admin.course.store');
 

@@ -1,10 +1,13 @@
 @extends('backend.layout.master')
 
-
+@push('css')
+    @vite(['resources\css\backend\courses.css'])
+@endpush
 
 @section('content')
+
     <div class="seller-courses">
-        <div class="frame-3" style="min-width: ;">
+        <div class="frame-3" >
             <div class="frame-4">
                 <div class="lable-3">Courses</div>
                 <div class="frame-5">

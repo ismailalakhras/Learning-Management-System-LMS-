@@ -1,5 +1,6 @@
   @foreach ($courses as $course)
-      <div data-id="{{$course->id}}" class="backend-course-card" style="cursor: pointer">
+      <div onclick="window.location='{{ route('admin.course.show', $course->id) }}'" data-id="{{ $course->id }}"
+          class="backend-course-card" style="cursor: pointer">
           <div class="chips">
               <div class="chip-text">Free</div>
           </div>
@@ -43,7 +44,6 @@
   @endforeach
 
 
-                <div class="pagination-category d-flex justify-content-center mt-4" id="pagination-links">
-                    {{ $courses->links('pagination::bootstrap-5') }}
-                </div>
-  
+  <div class="pagination-category d-flex justify-content-center mt-4" id="pagination-links">
+      {{ $courses->links('pagination::bootstrap-5') }}
+  </div>

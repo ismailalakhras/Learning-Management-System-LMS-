@@ -1,4 +1,4 @@
-<div class="seller-courses">
+<div class="seller-courses" style="position: fixed">
 
     <div class="side-menu">
         <div class="frame">

@@ -26,19 +26,8 @@
 
 <body>
 
-
-
-
-
-        @include('backend.layout.body.sidebar')
-        @yield('content')
-
-
-
-
-
-
-
+    @include('backend.layout.body.sidebar')
+    @yield('content')
 
     <!-- Scripts -->
     @vite(['resources/js/app.js', 'resources/js/backend/index.js'])
